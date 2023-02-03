@@ -44,6 +44,8 @@ gem "bootsnap", require: false
 
 gem 'rubocop', require: false
 
+gem 'slim-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
