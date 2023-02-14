@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :find_question, only: %i[index new create]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :find_question, only: %i[index new show create]
 
   def index
     @answers = @question.answers
@@ -9,13 +10,18 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new
   end
 
+  def show
+    @answer = Answer.find(params[:id])
+  end
+
   def create
     @answer = @question.answers.new(answer_params)
+    @answer.user = current_user
 
     if @answer.save
-      redirect_to @answer
+      redirect_to @question, notice: 'Your answer successfully created.'
     else
-      render :new
+      render 'questions/show'
     end
   end
 
