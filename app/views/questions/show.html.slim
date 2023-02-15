@@ -1,9 +1,12 @@
 h1= @question.title
 p= @question.body
 
-h2 Answes
+h2 Answers
 
 - @question.answers.each do |answer|
-  p.answer= answer.body
+  - if answer.persisted?
+    p.answer= answer.body
+    - if current_user&.author?(answer)
+      p= link_to 'Delete answer', answer_path(answer), method: :delete
 
   = render 'answers/form'
