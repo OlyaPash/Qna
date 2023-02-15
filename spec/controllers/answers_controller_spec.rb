@@ -82,7 +82,7 @@ RSpec.describe AnswersController, type: :controller do
       end
 
       it 'redirects to questions list' do
-        delete :destroy, params: { id: answer}
+        delete :destroy, params: { id: answer }
         expect(response).to redirect_to question_path(question)
       end
     end

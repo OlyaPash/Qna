@@ -19,7 +19,7 @@ feature 'User can only delete his answer', %{
     expect(page).to have_content 'Your answer successfully delete.'
   end
 
-  scenario 'Authenticated user is trying to delete a response that is not their own' do
+  scenario 'Authenticated user is trying to delete answer that is not their own' do
     sign_in(user_not_author)
     visit question_path(question)
 
